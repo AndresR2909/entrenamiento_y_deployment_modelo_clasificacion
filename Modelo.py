@@ -7,6 +7,9 @@ from sklearn.preprocessing import StandardScaler
 from joblib import load
 from pydantic import BaseModel
 
+import os
+
+
 
 # clase que describe las entradas
 class ClasificadorComprasDatos(BaseModel):
@@ -31,8 +34,8 @@ class ClasificadorComprasDatos(BaseModel):
 class ClasificadorCompras:
 
     def __init__(self):
-        self.model_fname_ = 'modelo_clasificador.joblib'
-        self.procesamiento_fname_= 'preprocessor.joblib'
+        self.model_fname_ = os.path.join(os.getcwd(),'modelo_clasificador.joblib')
+        self.procesamiento_fname_= os.path.join(os.getcwd(),'preprocessor.joblib')
         self.model = load(self.model_fname_)
         self.procesamiento = load(self.procesamiento_fname_)
 
